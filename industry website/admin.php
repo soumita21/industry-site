@@ -4,9 +4,10 @@ $host="localhost";
 $user="root";
 $password="";
 $db="industry";
+$conn = mysqli_connect('localhost','root','','industry') or die ("Could not connect to Database!");
+mysqli_connect($host,$user,$password);
+mysqli_select_db($conn,$db);
 
-mysql_connect($host,$user,$password);
-mysql_select_db($db);
 
 if(isset($_POST['user'])){
 	$uname=$_POST['user'];
@@ -14,15 +15,12 @@ if(isset($_POST['user'])){
 	$sql="select * from user where name='".$uname."'AND password='".$password."' ";
 	$result=mysql_query($sql);
 	if(mysql_num_rows($result)==1){
-		echo "in";
 		header("location:change.php");
 		exit();
-
 	}
 	else{
 		echo "error";
 		exit();
-
 	}
 }
 ?>
@@ -172,7 +170,7 @@ if(isset($_POST['user'])){
 
 	<div id="id01" class="modal"> 
 
-		<form class="modal-content animate" action="login.php" method="post"> 
+		<form class="modal-content animate" action="change.php" method="post"> 
 			<div class="imgcontainer"> 
 				<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span> 
 				<i class="fas fa-user-lock"></i>
